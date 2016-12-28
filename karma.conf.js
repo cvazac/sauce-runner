@@ -1,3 +1,5 @@
+require('dotenv').config({silent: true})
+
 module.exports = function(config) {
 
   var karmaConf = {
@@ -7,48 +9,30 @@ module.exports = function(config) {
     files: [
       'test/*.js'
     ]
-    , reporters: ['delta']
+    , reporters: ['sauce-runner']
   }
 
   if (false) {
-    var customLaunchers = {
-      'SL_Chrome1': {
+    var customLaunchers = {}
+    ;['8.0', '9.0', '10.0', '11.0'].forEach(function (version) {
+      customLaunchers[Object.keys(customLaunchers).length] = {
         base: 'SauceLabs',
         browserName: 'internet explorer',
-        version: 11.0,
-        platform: 'Windows 7'
-      },
-      'SL_Chrome2': {
-        base: 'SauceLabs',
-        browserName: 'internet explorer',
-        version: 10.0,
-        platform: 'Windows 7'
-      },
-      'SL_Chrome3': {
-        base: 'SauceLabs',
-        browserName: 'internet explorer',
-        version: 9.0,
-        platform: 'Windows 7'
-      },
-      'SL_Chrome4': {
-        base: 'SauceLabs',
-        browserName: 'internet explorer',
-        version: 8.0,
+        version: version,
         platform: 'Windows 7'
       }
-    }
+    })
 
     karmaConf = Object.assign({}, karmaConf, {
       sauceLabs: {
-        TODOtestName: 'Web App Unit Tests',
-        username: 'cvazac-ak',
-        accessKey: '363b6174-74ab-42fe-9a61-886e42e76bcc'
+        username: process.env.SL_USERNAME,
+        accessKey: process.env.SL_ACCESSKEY,
       },
       customLaunchers: customLaunchers,
       browsers: Object.keys(customLaunchers),
     })
   }
 
-  config.plugins.push(require('./delta-reporter'))
+  config.plugins.push(require('./karma.reporter'))
   config.set(karmaConf)
 };

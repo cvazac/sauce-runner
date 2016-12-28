@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "console.table": "^0.8.0",
+    "dotenv": "^2.0.0",
     "karma": "^1.3.0",
     "karma-mocha": "^1.3.0",
     "karma-sauce-launcher": "^1.1.0",
@@ -16,7 +17,7 @@
     "karma-safari-launcher": "^1.0.0"
   },
   "scripts": {
-    "dev": "karma start"
+    "start": "karma start"
   },
   "repository": {
     "type": "git",

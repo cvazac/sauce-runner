@@ -40,5 +40,5 @@ var Reporter = function(baseReporterDecorator, config, logger, helper, formatErr
 Reporter.$inject = ['baseReporterDecorator', 'config', 'logger', 'helper', 'formatError']
 
 module.exports = {
-  'reporter:delta': ['type', Reporter]
+  'reporter:sauce-runner': ['type', Reporter]
 }
